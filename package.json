@@ -1,0 +1,24 @@
+{
+  "name": "kiadasoknode",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kugesz/kiadasokNode.git"
+  },
+  "keywords": [],
+  "author": "kugesz, Dominik, BorosBalazs",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kugesz/kiadasokNode/issues"
+  },
+  "homepage": "https://github.com/Kugesz/kiadasokNode#readme",
+  "dependencies": {
+    "express": "^4.21.1",
+    "path": "^0.12.7"
+  }
+}
