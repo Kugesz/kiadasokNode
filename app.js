@@ -19,5 +19,6 @@ app.use("/login", login);
 app.use("/register", register);
 
 app.listen(PORT, () => {
+  console.log(__dirname);
   console.log(`server listens on port http://localhost:${PORT}`);
 });
