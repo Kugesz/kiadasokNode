@@ -14,16 +14,18 @@ body{
 }
 
 h1 {
-    font-size: 26px;
+    font-size: 1.2rem;
+    margin-top: 10%;
+    margin-bottom: 20%;
 }
 
 .login-conatiner {
-    width: 1400px;
-    height: 800px;
+    width: 70vw;
+    height: 80vh;
     display: flex;
     background-color: white;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    padding: 50px;
+    padding: 2%;
     border-radius: 8px;
     overflow: hidden;
 }
@@ -77,9 +79,7 @@ button:hover{
 .image {
     width: 60%;
     margin-left: 5%;
-}
-
-.image img{
-    width: 100%;
-    height: auto; 
+    background-image: url("../img/finance1.png");
+    background-size: cover;
+    background-repeat: no-repeat;
 }

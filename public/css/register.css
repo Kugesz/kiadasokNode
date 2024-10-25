@@ -13,15 +13,25 @@ body{
     background-color: #e6e6e6;
 }
 
+h1 {
+    font-size: 1.2rem;
+    margin-top: 10%;
+    margin-bottom: 20%;
+}
+
 .register-conatiner {
+    width: 70vw;
+    height: 80vh;
     display: flex;
     background-color: white;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 2%;
     border-radius: 8px;
     overflow: hidden;
 }
 
 .register-box {
+    width: 35%;
     padding: 40px;
 }
 
@@ -43,7 +53,7 @@ input[type="text"], input[type="password"]{
     font-size: 16px;
 }
 
-.has-user{
+.has-account{
     display: block;
     margin: 20px;
     font-size: 14px;
@@ -66,7 +76,10 @@ button:hover{
     background-color: #0056b3;
 }
 
-.image img{
-    width: 400px;
-    height: auto; 
+.image {
+    width: 60%;
+    margin-left: 5%;
+    background-image: url("../img/finance1.png");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
