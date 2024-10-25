@@ -1,0 +1,1 @@
+//menurendszer uzemeltetese!
