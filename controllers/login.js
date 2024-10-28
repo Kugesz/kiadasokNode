@@ -5,3 +5,7 @@ export const loadePage = (req, res, next) => {
     editing: false,
   });
 };
+
+export const loginCheck = (req, res, next) => {
+  
+}
