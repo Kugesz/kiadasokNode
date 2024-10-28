@@ -2,6 +2,8 @@ import __dirname from "../util/rootpath.js";
 import path from "path";
 import fs from "fs";
 
+import bcrypt from 'bcrypt';
+
 export const loadePage = (req, res, next) => {
   res.render("register.ejs", {
     pageTitle: "Regisztráció",
