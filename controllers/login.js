@@ -25,17 +25,23 @@ export const loginCheck = (req, res, next) => {
 
       const jsonData = JSON.parse(data);
 
+      let sent = false;
+
       jsonData.forEach((user) => {
         if (user.username == username) {
           if (user.password == password) {
-            res.status(201).json({ message: "Good!", valid: true });
-            return;
+            sent = true;
+            return res.status(201).json({ message: "Good!", valid: true });
+          } else {
+            sent = true;
+            return res.status(201).json({ message: "Not good!", valid: false });
           }
-          res.status(201).json({ message: "Not good!", valid: false });
-          return;
         }
       });
-      res.status(201).json({ message: "Not good!", valid: false });
+
+      if (!sent) {
+        return res.status(201).json({ message: "Not good!", valid: false });
+      }
     }
   );
 };
