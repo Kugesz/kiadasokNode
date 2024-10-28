@@ -2,6 +2,8 @@ import __dirname from "../util/rootpath.js";
 import path from "path";
 import fs from "fs";
 
+import bcrypt from 'bcrypt';
+
 export const loadePage = (req, res, next) => {
   res.render("login.ejs", {
     pageTitle: "Bejelentkezés",
@@ -27,21 +29,14 @@ export const loginCheck = (req, res, next) => {
 
       let sent = false;
 
-      jsonData.forEach((user) => {
-        if (user.username == username) {
-          if (user.password == password) {
-            sent = true;
-            return res.status(201).json({ message: "Good!", valid: true });
-          } else {
-            sent = true;
-            return res.status(201).json({ message: "Not good!", valid: false });
-          }
-        }
-      });
-
-      if (!sent) {
+      const user = jsonData.find(user => user.username == username);
+      if(user == null){
         return res.status(201).json({ message: "Not good!", valid: false });
       }
+      if (bcrypt.compare(user.password, password)) {
+        return res.status(201).json({ message: "Good!", valid: true });
+      }
+      return res.status(201).json({ message: "Not good!", valid: false });
     }
   );
 };
