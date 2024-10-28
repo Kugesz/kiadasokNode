@@ -1,0 +1,13 @@
+[
+  {
+    "username": "kugesz",
+    "password": "asd123",
+    "expenses":[
+      {
+        "category": 1,
+        "amount" : 1000,
+        "description": "De olcso volt! xdddd"
+      }
+    ]
+  }
+]
