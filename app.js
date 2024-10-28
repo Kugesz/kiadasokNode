@@ -7,6 +7,8 @@ import index from "./routes/index.js";
 import login from "./routes/login.js";
 import register from "./routes/register.js";
 
+import User from "./models/user.js";
+
 const app = express();
 const PORT = 3000;
 
@@ -23,6 +25,6 @@ app.use("/login", login);
 app.use("/register", register);
 
 app.listen(PORT, () => {
-  console.log(__dirname);
   console.log(`server listens on port http://localhost:${PORT}`);
+  User.load();
 });
