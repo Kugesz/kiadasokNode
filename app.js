@@ -27,7 +27,7 @@ initializePassport(
 );
 
 const app = express();
-const PORT = 3000;
+const PORT = 3020;
 
 app.set("view engine", "ejs");
 app.set("views", "views");
