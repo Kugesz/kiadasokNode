@@ -5,3 +5,7 @@ export const loadePage = (req, res, next) => {
     editing: false,
   });
 };
+
+export const newExpense = (req, res, next) => {};
+
+export const deleteExpense = (req, res, next) => {};
