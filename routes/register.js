@@ -8,6 +8,6 @@ const router = express.Router();
 
 router.get("/", registerController.loadePage);
 
-router.post("/newRegister", registerController.newRegister);
+router.post("/", registerController.newRegister);
 
 export default router;
