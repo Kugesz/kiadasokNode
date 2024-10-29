@@ -14,7 +14,9 @@ router.post(
   indexController.newExpense
 );
 
-router.post(
+// router.put("/editExpense")
+
+router.delete(
   "/deleteExpense",
   authController.checkAuthenticated,
   indexController.deleteExpense
