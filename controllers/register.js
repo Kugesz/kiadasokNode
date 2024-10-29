@@ -2,6 +2,8 @@ import __dirname from "../util/rootpath.js";
 import path from "path";
 import fs from "fs";
 
+import * as users from "../data/user.js";
+
 import bcrypt from "bcrypt";
 
 export const loadePage = (req, res, next) => {
@@ -20,7 +22,7 @@ export const newRegister = (req, res, next) => {
     async (req, res) => {
       try {
         const hashedPassword = await bycript.hash(req.body.password, 10);
-        users.push({
+        users.Add({
           id: Date.now().toString(),
           username: req.body.name,
           password: hashedPassword,
