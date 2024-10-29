@@ -2,7 +2,7 @@ import __dirname from "../util/rootpath.js";
 import path from "path";
 import fs from "fs";
 
-import bcrypt from 'bcrypt';
+import bcrypt from "bcrypt";
 
 export const loadePage = (req, res, next) => {
   res.render("register.ejs", {
@@ -17,10 +17,19 @@ export const newRegister = (req, res, next) => {
   const password = req.body.password;
 
   if (!checkUsername(username)) {
-    res.status(201).json({
-      message: "User registered successfully",
-      user: { username, password },
-    });
+    async (req, res) => {
+      try {
+        const hashedPassword = await bycript.hash(req.body.password, 10);
+        users.push({
+          id: Date.now().toString(),
+          username: req.body.name,
+          password: hashedPassword,
+        });
+        res.redirect("/login");
+      } catch {
+        res.redirect("/register");
+      }
+    };
   } else {
     res.status(400).json({ message: "Ez a felhasználónév már foglalt!" });
   }
