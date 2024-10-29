@@ -22,4 +22,6 @@ router.delete(
   indexController.deleteExpense
 );
 
+router.put("/setBalance");
+
 export default router;
