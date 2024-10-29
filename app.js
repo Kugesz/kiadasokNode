@@ -22,13 +22,12 @@ initializePassport(
     return users.Get().find((user) => user.username == username);
   },
   (id) => {
-
     return users.Get().find((user) => user.id == id);
   }
 );
 
 const app = express();
-const PORT = 3020;
+const PORT = 3000;
 
 app.set("view engine", "ejs");
 app.set("views", "views");
