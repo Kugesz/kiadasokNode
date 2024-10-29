@@ -5,7 +5,14 @@
 <%- include('./include/navigation.ejs' ) %>
 <body>
     <div class="main">
-
+        <div class="profile-menu">
+            <a href="/profil">Profil</a>
+            <a href="/settings">Beállítások</a>
+            <form action="/logout?_method=DELETE" method="POST">
+              <button type="submit">Kijelentkezés</button>
+            </form>
+          </div>
+          
     </div>
 </body>
 </html>

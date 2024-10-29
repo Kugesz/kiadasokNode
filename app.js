@@ -10,6 +10,7 @@ import __dirname from "./util/rootpath.js";
 import index from "./routes/index.js";
 import login from "./routes/login.js";
 import register from "./routes/register.js";
+import logout from "./routes/logout.js";
 
 import * as users from "./data/user.js";
 
@@ -27,7 +28,7 @@ initializePassport(
 );
 
 const app = express();
-const PORT = 3000;
+const PORT = 3020;
 
 app.set("view engine", "ejs");
 app.set("views", "views");
@@ -51,6 +52,7 @@ app.use(methodOverride("_method"));
 app.use("/", index);
 app.use("/login", login);
 app.use("/register", register);
+app.use("/logout", logout);
 
 app.listen(PORT, () => {
   console.log(`server listens on port http://localhost:${PORT}`);
