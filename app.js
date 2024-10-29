@@ -15,6 +15,17 @@ import * as users from "./data/user.js";
 
 import initializePassport from "./configs/passport-config.js";
 
+initializePassport(
+  passport,
+  (username) => {
+    return users.Get().find((user) => user.username == username);
+  },
+  (id) => {
+
+    return users.Get().find((user) => user.id == id);
+  }
+);
+
 const app = express();
 const PORT = 3000;
 
@@ -40,16 +51,6 @@ app.use(methodOverride("_method"));
 app.use("/", index);
 app.use("/login", login);
 app.use("/register", register);
-
-initializePassport(
-  passport,
-  (username) => {
-    return users.Get.find((user) => user.username == username);
-  },
-  (id) => {
-    return useusers.Get.find((user) => user.id == id);
-  }
-);
 
 app.listen(PORT, () => {
   console.log(`server listens on port http://localhost:${PORT}`);

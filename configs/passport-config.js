@@ -18,7 +18,7 @@ const initialize = (passport, getUserByName, getUserById) => {
       return done(e);
     }
   };
-  passport.use(new LocalStrategy({ usernameField: "name" }, authenticateUser));
+  passport.use(new LocalStrategy({ usernameField: "username" }, authenticateUser));
   passport.serializeUser((user, done) => done(null, user.id));
   passport.deserializeUser((id, done) => {
     done(null, getUserById(id));

@@ -14,26 +14,20 @@ export const loadePage = (req, res, next) => {
   });
 };
 
-export const newRegister = (req, res, next) => {
+export const newRegister = async (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
 
-  if (!checkUsername(username)) {
-    async (req, res) => {
-      try {
-        const hashedPassword = await bycript.hash(req.body.password, 10);
-        users.Add({
-          id: Date.now().toString(),
-          username: req.body.name,
-          password: hashedPassword,
-        });
-        res.redirect("/login");
-      } catch {
-        res.redirect("/register");
-      }
-    };
-  } else {
-    res.status(400).json({ message: "Ez a felhasználónév már foglalt!" });
+  try {
+    const hashedPassword = await bcrypt.hash(password, 2);
+    users.Add({
+      id: Date.now().toString(),
+      username: username,
+      password: hashedPassword,
+    });
+    res.redirect("/login");
+  } catch {
+    res.redirect("/register");
   }
 };
 
