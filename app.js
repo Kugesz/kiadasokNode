@@ -1,6 +1,10 @@
 import path from "path";
 import express from "express";
 import bodyParser from "body-parser";
+import flash from "express-flash";
+import session from "express-session";
+import passport from "passport";
+import methodOverride from "method-override";
 
 import __dirname from "./util/rootpath.js";
 import index from "./routes/index.js";
@@ -19,6 +23,17 @@ app.use(express.json());
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
+app.use(flash());
+app.use(
+  session({
+    secret: "asd123",
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(methodOverride("_method"));
 
 app.use("/", index);
 app.use("/login", login);
