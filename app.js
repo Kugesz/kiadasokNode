@@ -11,7 +11,7 @@ import index from "./routes/index.js";
 import login from "./routes/login.js";
 import register from "./routes/register.js";
 
-import User from "./models/user.js";
+import initializePassport from "./configs/passport-config.js";
 
 const app = express();
 const PORT = 3000;
@@ -38,6 +38,16 @@ app.use(methodOverride("_method"));
 app.use("/", index);
 app.use("/login", login);
 app.use("/register", register);
+
+initializePassport(
+  passport,
+  (username) => {
+    return users.find((user) => user.username == username);
+  },
+  (id) => {
+    return users.find((user) => user.id == id);
+  }
+);
 
 app.listen(PORT, () => {
   console.log(`server listens on port http://localhost:${PORT}`);
