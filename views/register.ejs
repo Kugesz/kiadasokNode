@@ -6,15 +6,15 @@
     <div class="register-conatiner">
         <div class="register-box">
             <h2>Üdvözlünk újra a "NÉV" oldalon, <br> kérlek  add meg az adataidat <br> a regisztrációhoz </h2>
-            <form>
+            <form action="/register" method="POST">
                 <div class="input-group">
-                    <input type="text" placeholder="Felhasználónév">
+                    <input type="text" name="username" placeholder="Felhasználónév">
                 </div>
                 <div class="input-group">
-                    <input type="text" placeholder="Jelszó">
+                    <input type="text" name="password" placeholder="Jelszó">
                 </div>
                 <div class="input-group">
-                    <input type="text" placeholder="Jelszó újra">
+                    <input type="text" name="passwordAgain" placeholder="Jelszó újra">
                 </div>
     
                 <a href="/login" class="has-user">Már van felhasználód</a>

@@ -7,6 +7,6 @@ const router = express.Router();
 //Ide jonneg a connectionok get set stb.
 router.get("/", loginController.loadePage);
 
-router.get("/loginCheck", loginController.loginCheck);
+router.post("/", loginController.loginCheck);
 
 export default router;

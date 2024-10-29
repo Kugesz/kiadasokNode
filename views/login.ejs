@@ -6,14 +6,15 @@
     <div class="login-conatiner">
         <div class="login-box">
             <h1>Üdvözlünk újra a "NÉV" oldalon, <br> kérlek jelentkezz be!</h1>
-            <form>
+            <form action="/login", method="POST">
                 <div class="input-group">
-                    <input type="text" placeholder="Felhasználónév">
+                    <input type="text" name="username" placeholder="Felhasználónév">
                 </div>
                 <div class="input-group">
-                    <input type="text" placeholder="Jelszó">
+                    <input type="text" name="password" placeholder="Jelszó">
                 </div>
-                <a href="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExbzljZWI0aHZjYzVhYTdudzZ6cGdqb3UzMm8zem5mZDB3bzg0OGtqYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/PkARhJCHy054BA55Te/giphy.webp" class="forgot-password">Elfelejtette a jelszavát?</a>
+                <!-- <a href="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExbzljZWI0aHZjYzVhYTdudzZ6cGdqb3UzMm8zem5mZDB3bzg0OGtqYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/PkARhJCHy054BA55Te/giphy.webp" class="forgot-password">Elfelejtette a jelszavát?</a> -->
+                 <a href="/register">Még nincsen fiókom</a>
                 <button type="submit">Bejelentkezés</button>
             </form>
         </div>
