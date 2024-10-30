@@ -1,5 +1,5 @@
-if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').load()
+if (process.env.NODE_ENV !== "production") {
+  await import("dotenv").then((dotenv) => dotenv.config());
 }
 
 import path from "path";
@@ -21,10 +21,10 @@ import * as users from "./data/user.js";
 
 import initializePassport from "./configs/passport-config.js";
 
-mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true })
-const db = mongoose.connection
-db.on('error', error => console.error(error))
-db.once('open', () => console.log('Connected to Mongoose'))
+mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true });
+const db = mongoose.connection;
+db.on("error", (error) => console.error(error));
+db.once("open", () => console.log("Connected to Mongoose"));
 
 initializePassport(
   passport,
