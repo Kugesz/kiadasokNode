@@ -1,6 +1,14 @@
-let users = [];
+import mongoose from "mongoose";
 
-export const Add = (user) => users.push(user);
-export const Get = () => {
-  return users;
-};
+const userSchema = new mongoose.Schema({
+  username: {
+    type: String,
+    required: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+});
+
+export default mongoose.model("Author", userSchema);
