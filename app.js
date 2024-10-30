@@ -1,3 +1,7 @@
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').load()
+}
+
 import path from "path";
 import express from "express";
 import bodyParser from "body-parser";
@@ -5,6 +9,7 @@ import flash from "express-flash";
 import session from "express-session";
 import passport from "passport";
 import methodOverride from "method-override";
+import mongoose from "mongoose";
 
 import __dirname from "./util/rootpath.js";
 import index from "./routes/index.js";
@@ -15,6 +20,11 @@ import logout from "./routes/logout.js";
 import * as users from "./data/user.js";
 
 import initializePassport from "./configs/passport-config.js";
+
+mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true })
+const db = mongoose.connection
+db.on('error', error => console.error(error))
+db.once('open', () => console.log('Connected to Mongoose'))
 
 initializePassport(
   passport,
