@@ -6,6 +6,12 @@ export const loadePage = (req, res, next) => {
   });
 };
 
-export const newExpense = (req, res, next) => {};
+export const newExpense = async (req, res, next) => {
+  // username, expense
+  await User.updateOne(
+    { username: username },
+    { $push: { expenses: expense } }
+  );
+};
 
 export const deleteExpense = (req, res, next) => {};
