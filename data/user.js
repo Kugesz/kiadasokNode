@@ -9,6 +9,6 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-});
+}, { collection: 'users' });
 
 export default mongoose.model("Author", userSchema);

@@ -17,7 +17,7 @@ import login from "./routes/login.js";
 import register from "./routes/register.js";
 import logout from "./routes/logout.js";
 
-import * as users from "./data/user.js";
+import User from "./data/user.js";
 
 import initializePassport from "./configs/passport-config.js";
 
@@ -28,12 +28,8 @@ db.once("open", () => console.log("Connected to Mongoose"));
 
 initializePassport(
   passport,
-  (username) => {
-    return users.Get().find((user) => user.username == username);
-  },
-  (id) => {
-    return users.Get().find((user) => user.id == id);
-  }
+  async (username) => await User.findOne({ username: username }),
+  async (id) => await User.findOne({ id: id })
 );
 
 const app = express();

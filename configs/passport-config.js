@@ -3,7 +3,8 @@ import bcrypt from "bcrypt";
 
 const initialize = (passport, getUserByName, getUserById) => {
   const authenticateUser = async (username, password, done) => {
-    const user = getUserByName(username);
+    const user = await getUserByName(username);
+    console.log(user);
     if (user == null) {
       return done(null, false, { message: "No user was found with that name" });
     }
@@ -18,7 +19,9 @@ const initialize = (passport, getUserByName, getUserById) => {
       return done(e);
     }
   };
-  passport.use(new LocalStrategy({ usernameField: "username" }, authenticateUser));
+  passport.use(
+    new LocalStrategy({ usernameField: "username" }, authenticateUser)
+  );
   passport.serializeUser((user, done) => done(null, user.id));
   passport.deserializeUser((id, done) => {
     done(null, getUserById(id));
