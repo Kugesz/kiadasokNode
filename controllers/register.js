@@ -18,11 +18,6 @@ export const newRegister = async (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
 
-  if (await checkUsername(username)) {
-    console.error("This user is already existing!");
-    return res.redirect("/login");
-  }
-
   try {
     const hashedPassword = await bcrypt.hash(password, 2);
     const user = new User({
@@ -32,17 +27,9 @@ export const newRegister = async (req, res, next) => {
     await user.save();
     res.redirect("/login");
   } catch {
+    if (error.code === 11000) { //Duplicated username
+      throw new Error("Username or email already exists.");
+    }
     res.redirect("/register");
-  }
-};
-
-const checkUsername = async (username) => {
-  try {
-    const user = await User.findOne({ username: username });
-
-    return user !== null;
-  } catch (error) {
-    console.error("Error checking username:", error);
-    throw new Error("Internal server error");
   }
 };
