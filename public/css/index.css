@@ -1,0 +1,141 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1200px;
+    margin: auto;
+  }
+  
+  header {
+    width: 100%;
+    background-color: #d3d8fc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 3px 3px grey;
+    padding: 10px 20px;
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo h1 {
+    margin-left: 5px;
+  }
+  
+  nav a {
+    margin-right: 25px;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    font-size: 25px;
+  }
+  
+  .user-icon {
+    font-size: 24px;
+  }
+  
+  main {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 20px;
+    gap: 20px;
+  }
+  
+  .transactions, .spending-circle, .balance {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    text-align: center;
+  }
+  
+  .spending-circle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .circle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 5px solid green;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .circle p {
+    font-size: 16px;
+  }
+  
+  .edit-profile, .logout, .add-transaction {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 14px;
+    border: none;
+    border-radius: 50px;
+    box-shadow: 0px 3px 2px grey;
+    cursor: pointer;
+  }
+  
+  .logout {
+    background-color: #e74c3c;
+    color: white;
+  }
+  
+  .add-transaction {
+    background-color: #3498db;
+    color: white;
+  }
+  
+  .balance-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+  }
+  
+  .balance-box button {
+    margin-left: 10px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  #add-money {
+    border: 1px solid black;
+    border-radius: 40px;
+    padding-left: 7px;
+    padding-right: 7px;
+    background-color: white;
+  }
+
+  #add-money:hover
+  {
+    background-color: #3498db;
+  }
+
+  #balanceAmount
+  {
+    border: 1px solid black;
+    border-radius: 40px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
