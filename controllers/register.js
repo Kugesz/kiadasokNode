@@ -2,7 +2,7 @@ import __dirname from "../util/rootpath.js";
 import path from "path";
 import fs from "fs";
 
-import * as users from "../data/user.js";
+import User from "../data/user.js";
 
 import bcrypt from "bcrypt";
 
@@ -20,36 +20,16 @@ export const newRegister = async (req, res, next) => {
 
   try {
     const hashedPassword = await bcrypt.hash(password, 2);
-    users.Add({
-      id: Date.now().toString(),
+    const user = new User({
       username: username,
       password: hashedPassword,
     });
+    await user.save();
     res.redirect("/login");
   } catch {
+    if (error.code === 11000) { //Duplicated username
+      throw new Error("Username or email already exists.");
+    }
     res.redirect("/register");
   }
-};
-
-const checkUsername = (username) => {
-  fs.readFile(
-    path.join(__dirname, "data", "users.json"),
-    "utf-8",
-    (err, data) => {
-      if (err) {
-        console.error("Error reading JSON:", err);
-        return;
-      }
-
-      const jsonData = JSON.parse(data);
-
-      jsonData.forEach((user) => {
-        if (user.username == username) {
-          return false;
-        }
-      });
-
-      return true;
-    }
-  );
 };

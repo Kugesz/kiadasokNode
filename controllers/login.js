@@ -17,4 +17,3 @@ export const loginCheck = (req, res, next) => {
     failureFlash: true,
   })(req, res, next);
 };
-

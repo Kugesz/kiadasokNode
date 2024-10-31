@@ -1,3 +1,7 @@
+if (process.env.NODE_ENV !== "production") {
+  await import("dotenv").then((dotenv) => dotenv.config());
+}
+
 import path from "path";
 import express from "express";
 import bodyParser from "body-parser";
@@ -13,18 +17,20 @@ import login from "./routes/login.js";
 import register from "./routes/register.js";
 import logout from "./routes/logout.js";
 
-import * as users from "./data/user.js";
+import User from "./data/user.js";
 
 import initializePassport from "./configs/passport-config.js";
 
+mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true });
+const db = mongoose.connection;
+db.on("error", (error) => console.error(error));
+db.once("open", () => console.log("Connected to Mongoose"));
+
+
 initializePassport(
   passport,
-  (username) => {
-    return users.Get().find((user) => user.username == username);
-  },
-  (id) => {
-    return users.Get().find((user) => user.id == id);
-  }
+  async (username) => await User.findOne({ username: username }),
+  async (id) => await User.findOne({ id: id })
 );
 
 const app = express();
