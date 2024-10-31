@@ -1,10 +1,39 @@
 <%- include('./include/head.ejs') %>
-    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/index.css">
     <title>Kiadások</title>
 </head>
 <%- include('./include/navigation.ejs' ) %>
 <body>
-    <div class="main">
+
+  <main>
+    <div class="transactions">
+      <h2>Tranzakciók</h2>
+      <div class="transaction-list">
+        <!-- Tranzakciok -->
+      </div>
+    </div>
+
+    <div class="spending-circle">
+      <div class="circle">
+        <p>Eddigi költségek:<br><span id="spendingAmount">0 Ft</span></p>
+      </div>
+      <button class="edit-profile">Profil szerkesztése</button>
+      <button class="logout">Kijelentkezés</button>
+    </div>
+
+    <div class="balance">
+      <h3>Egyenleged</h3>
+      <div class="balance-box">
+        <span id="balanceAmount">100 000 Ft</span>
+        <button id="add-money" onclick="addTransaction()">+</button>
+      </div>
+      <br>
+      <h3>Tranzakció hozzáadása</h3>
+      <button class="add-transaction" onclick="addTransaction()">Add hozzá</button>
+    </div>
+  </main>
+</div>
+    <!-- <div class="main">
         <div class="profile-menu">
             <a href="/profil">Profil</a>
             <a href="/settings">Beállítások</a>
@@ -13,6 +42,6 @@
             </form>
           </div>
           
-    </div>
+    </div>-->
 </body>
 </html>
