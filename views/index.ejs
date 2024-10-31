@@ -1,6 +1,13 @@
 <%- include('./include/head.ejs') %>
     <link rel="stylesheet" href="/css/index.css">
+    <link href='https://fonts.googleapis.com/css?family=Kameron' rel='stylesheet'>
     <title>Kiadások</title>
+    <style>
+      body{
+        font-family: 'Kameron';
+         font-size: 22px;
+      }
+    </style>
 </head>
 <%- include('./include/navigation.ejs' ) %>
 <body>
@@ -18,7 +25,7 @@
         <p>Eddigi költségek:<br><span id="spendingAmount">0 Ft</span></p>
       </div>
       <button class="edit-profile">Profil szerkesztése</button>
-      <button class="logout">Kijelentkezés</button>
+      <button class="logout" value="DELETE">Kijelentkezés</button>
     </div>
 
     <div class="balance">
