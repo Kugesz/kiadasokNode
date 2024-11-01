@@ -1,7 +1,7 @@
 import express from "express";
 
-import * as indexController from "../controllers/index.js";
 import * as authController from "../controllers/authChecks.js";
+import * as indexController from "../controllers/index.js";
 
 const router = express.Router();
 
@@ -15,7 +15,7 @@ router.post(
 
 router.put(
   "/editExpense",
-  //authController.checkAuthenticated,
+  authController.checkAuthenticated,
   indexController.editExpense
 );
 

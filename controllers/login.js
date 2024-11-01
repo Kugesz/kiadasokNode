@@ -1,6 +1,6 @@
 import __dirname from "../util/rootpath.js";
-
 import passport from "passport";
+
 
 export const loadePage = (req, res, next) => {
   res.render("login.ejs", {
