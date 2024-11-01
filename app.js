@@ -63,11 +63,3 @@ app.use("/logout", logout);
 app.listen(PORT, () => {
   console.log(`server listens on port http://localhost:${PORT}`);
 });
-
-//PASSWORD CHANGE
-const profileRoutes = require('./routes/index');
-app.use('/api', profileRoutes);
-
-//LOGOUT 
-const logoutRoute = require('./controllers/logout');
-app.use('/', logoutRoute);
