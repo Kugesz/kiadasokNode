@@ -1,10 +1,11 @@
 import { Strategy as LocalStrategy } from "passport-local";
 import bcrypt from "bcrypt";
 
+import User from "../data/user.js";
+
 const initialize = (passport, getUserByName, getUserById) => {
   const authenticateUser = async (username, password, done) => {
     const user = await getUserByName(username);
-    console.log(user);
     if (user == null) {
       return done(null, false, { message: "No user was found with that name" });
     }
@@ -23,8 +24,14 @@ const initialize = (passport, getUserByName, getUserById) => {
     new LocalStrategy({ usernameField: "username" }, authenticateUser)
   );
   passport.serializeUser((user, done) => done(null, user.id));
-  passport.deserializeUser((id, done) => {
-    done(null, getUserById(id));
+
+  passport.deserializeUser(async (id, done) => {
+    try {
+      const user = await User.findById(id);
+      done(null, user);
+    } catch (error) {
+      done(error);
+    }
   });
 };
 
