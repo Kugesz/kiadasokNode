@@ -13,7 +13,7 @@ export const newExpense = async (req, res, next) => {
     description: req.body.description,
     amount: req.body.amount,
     category: req.body.category,
-  }
+  };
   await User.updateOne(
     { username: username },
     { $push: { expenses: expense } }
