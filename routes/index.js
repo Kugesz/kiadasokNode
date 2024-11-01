@@ -10,7 +10,7 @@ router.get("/", authController.checkAuthenticated, indexController.loadePage);
 
 router.post(
   "/newExpense",
-  authController.checkAuthenticated,
+  //authController.checkAuthenticated,
   indexController.newExpense
 );
 
@@ -22,6 +22,10 @@ router.delete(
   indexController.deleteExpense
 );
 
-router.put("/setBalance");
+router.post(
+  "/setBudget",
+  authController.checkAuthenticated,
+  indexController.setBudget
+);
 
 export default router;
