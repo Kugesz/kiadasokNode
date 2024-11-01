@@ -1,11 +1,10 @@
-import express from "express";
-
+import express from 'express';
 import * as indexController from "../controllers/index.js";
 import * as authController from "../controllers/authChecks.js";
+import profileRouter from '../controllers/pw-change.js';
 
 const router = express.Router();
 
-//Ide jonneg a connectionok get set stb.
 router.get("/", authController.checkAuthenticated, indexController.loadePage);
 
 router.post(
@@ -14,7 +13,7 @@ router.post(
   indexController.newExpense
 );
 
-// router.put("/editExpense")
+
 
 router.delete(
   "/deleteExpense",
@@ -23,5 +22,7 @@ router.delete(
 );
 
 router.put("/setBalance");
+
+router.use('/profile', profileRouter);
 
 export default router;
