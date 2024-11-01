@@ -10,7 +10,7 @@ router.get("/", authController.checkAuthenticated, indexController.loadePage);
 
 router.post(
   "/newExpense",
-  authController.checkAuthenticated,
+  //authController.checkAuthenticated,
   indexController.newExpense
 );
 
@@ -18,7 +18,7 @@ router.post(
 
 router.delete(
   "/deleteExpense",
-  authController.checkAuthenticated,
+  // authController.checkAuthenticated,
   indexController.deleteExpense
 );
 

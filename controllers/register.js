@@ -19,7 +19,7 @@ export const newRegister = async (req, res, next) => {
   const password = req.body.password;
 
   try {
-    const hashedPassword = await bcrypt.hash(password, 2);
+    const hashedPassword = await bcrypt.hash(password, 10);
     const user = new User({
       username: username,
       password: hashedPassword,
