@@ -5,16 +5,19 @@ import * as authController from "../controllers/authChecks.js";
 
 const router = express.Router();
 
-//Ide jonneg a connectionok get set stb.
 router.get("/", authController.checkAuthenticated, indexController.loadePage);
 
 router.post(
   "/newExpense",
-  //authController.checkAuthenticated,
+  authController.checkAuthenticated,
   indexController.newExpense
 );
 
-// router.put("/editExpense")
+router.put(
+  "/editExpense",
+  //authController.checkAuthenticated,
+  indexController.editExpense
+);
 
 router.delete(
   "/deleteExpense",
