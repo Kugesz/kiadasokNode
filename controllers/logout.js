@@ -1,8 +1,9 @@
-export const logout = (req, res, next) => {
-  req.logout((err) => {
+app.delete('/logout', (req, res) => {
+  req.session.destroy((err) => {
     if (err) {
-      return next(err);
+      return res.redirect('/');
     }
-    res.redirect("/login");
+    res.clearCookie('session-id');
+    res.redirect('/login');
   });
-};
+});
