@@ -6,7 +6,6 @@ export const loadePage = async (req, res, next) => {
     { username: username },
     { expenses: 1, _id: 0 }
   );
-  console.log(expenses);
   res.render("index.ejs", {
     pageTitle: "Kiadások",
     path: "/",
@@ -42,7 +41,6 @@ export const newExpense = async (req, res, next) => {
 // search by: Date
 // in body: description, amount, category
 export const editExpense = async (req, res, next) => {
-  console.log("edit");
   try {
     const username = req.body.username;
     const expenseData = req.body.date;
@@ -99,7 +97,7 @@ export const setBudget = async (req, res, next) => {
     await User.updateOne({ username: username }, { $set: { budget: budget } });
     res.status(201).json({ message: "Budget set successfully!" });
   } catch (err) {
-    console.log(err);
+    console.error(err);
     res
       .status(500)
       .json({ message: "An error occurred while setting budget!", error: err });
