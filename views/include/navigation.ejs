@@ -6,9 +6,14 @@
       <h1>GBD Banking</h1>
     </div>
     <div>
-      <a href="/profil">Profil</a>
-      <a href="/settings">Beállítások</a>
-      <span class="user-icon">👤</span>
+      <button class="user-icon" id="menu-click" onclick="changeMenuState()">
+        👤
+      </button>
     </div>
   </nav>
+  <div class="menu" id="menu-container" style="display: none">
+    <a href="/profil">Profil</a>
+    <a href="/settings">Beállítások</a>
+    <a href="/logout">Kijelentkezés</a>
+  </div>
 </header>
