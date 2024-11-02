@@ -1,8 +1,8 @@
 import express from "express";
- 
+
 import * as authController from "../controllers/authChecks.js";
 import * as indexController from "../controllers/index.js";
-import pwController from "../controllers/pw-change.js";
+import * as pwController from "../controllers/pw-change.js";
 
 const router = express.Router();
 

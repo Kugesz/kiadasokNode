@@ -6,5 +6,3 @@ export const logout = (req, res, next) => {
     res.redirect("/login");
   });
 };
-
-export default router;
