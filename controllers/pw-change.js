@@ -1,8 +1,8 @@
-import express from 'express';
-const router = express.Router();
+import bcrypt from "bcrypt";
 
-router.post('/change-password', (req, res) => {
-  const { password } = req.body;
+// in body: password
+export const changePassword = (req, res, next) => {
+  const password = req.body.password;
 
   // Itt adj hozzá kódot a jelszó titkosításához és mentéséhez az adatbázisban
   // bcrypt.hash(password, 10, (err, hashedPassword) => {
@@ -10,7 +10,5 @@ router.post('/change-password', (req, res) => {
   //   // Tovább a jelszó mentéséhez az adatbázisban
   // });
 
-  res.json({ success: true });
-});
-
-export default router;
+  res.status(201).json({ success: true });
+};

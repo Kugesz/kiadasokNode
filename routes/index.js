@@ -1,7 +1,7 @@
-import express from 'express';
+import express from "express";
 import * as indexController from "../controllers/index.js";
 import * as authController from "../controllers/authChecks.js";
-import profileRouter from '../controllers/pw-change.js';
+import pwController from "../controllers/pw-change.js";
 
 const router = express.Router();
 
@@ -13,8 +13,6 @@ router.post(
   indexController.newExpense
 );
 
-
-
 router.delete(
   "/deleteExpense",
   authController.checkAuthenticated,
@@ -23,6 +21,10 @@ router.delete(
 
 router.put("/setBalance");
 
-router.use('/profile', profileRouter);
+router.put(
+  "/changePassword",
+  authController.checkAuthenticated,
+  pwController.changePassword
+);
 
 export default router;
