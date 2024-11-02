@@ -28,6 +28,14 @@ header {
   margin-left: 5px;
 }
 
+nav {
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
 nav a {
   position: relative;
   margin-right: 40px;
@@ -35,6 +43,11 @@ nav a {
   color: #333;
   font-weight: bold;
   font-size: 30px;
+}
+
+nav img {
+  height: 80px;
+  aspect-ratio: 1/1;
 }
 
 nav a::after {
