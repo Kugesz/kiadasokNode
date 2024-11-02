@@ -1,10 +1,8 @@
-import __dirname from "../util/rootpath.js";
 import path from "path";
 import fs from "fs";
-
-import User from "../data/user.js";
-
 import bcrypt from "bcrypt";
+import __dirname from "../util/rootpath.js";
+import User from "../data/user.js";
 
 export const loadePage = (req, res, next) => {
   res.render("register.ejs", {
@@ -19,7 +17,7 @@ export const newRegister = async (req, res, next) => {
   const password = req.body.password;
 
   try {
-    const hashedPassword = await bcrypt.hash(password, 2);
+    const hashedPassword = await bcrypt.hash(password, 10);
     const user = new User({
       username: username,
       password: hashedPassword,

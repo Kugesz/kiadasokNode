@@ -1,7 +1,7 @@
 import express from "express";
 
-import * as logoutController from "../controllers/logout.js";
 import * as authController from "../controllers/authChecks.js";
+import * as logoutController from "../controllers/logout.js";
 
 const router = express.Router();
 
