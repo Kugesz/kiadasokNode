@@ -11,7 +11,11 @@
 </head>
 <%- include('./include/navigation.ejs' ) %>
 <body>
-
+  <div class="headline">
+    <h1>
+      Üdvözlünk az oldalon, <%= username %>.
+    </h1>
+  </div>
   <main>
     <div class="transactions">
       <h2>Tranzakciók</h2>
@@ -61,6 +65,5 @@
 </div>
 
 <script src="/public/js/main.js"></script>
-<script src="/controllers/logout.js"></script>
 </body>
 </html>
