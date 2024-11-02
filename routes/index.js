@@ -10,7 +10,7 @@ router.get("/", authController.checkAuthenticated, indexController.loadePage);
 
 router.post(
   "/newExpense",
-  authController.checkAuthenticated,
+  //authController.checkAuthenticated,
   indexController.newExpense
 );
 

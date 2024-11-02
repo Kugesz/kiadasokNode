@@ -18,16 +18,17 @@ export const loadePage = async (req, res, next) => {
 // in body: description, amount, category
 export const newExpense = async (req, res, next) => {
   try {
-    const username = req.user.username;
+    const username = req.body.username;
     const expense = {
       description: req.body.description,
       amount: req.body.amount,
       category: req.body.category,
     };
 
-    await User.updateOne(
+    await User.findOneAndUpdate(
       { username: username },
-      { $push: { expenses: expense } }
+      { $push: { expenses: expense } },
+      { new: false }
     );
     res.status(201).json({ message: "Expense added successfully!" });
   } catch (err) {
@@ -49,9 +50,10 @@ export const editExpense = async (req, res, next) => {
       amount: req.body.amount,
       category: req.body.category,
     };
-    await User.updateOne(
+    await User.findOneAndUpdate(
       { username: username, "expenses.date": expenseData },
-      { $set: { "expenses.$": newExpense } }
+      { $set: { "expenses.$": newExpense } },
+      { new: false }
     );
     res.status(201).json({
       message: "Expense edited successfully!",
@@ -76,9 +78,10 @@ export const deleteExpense = async (req, res, next) => {
       category: req.body.category,
     };
 
-    await User.updateOne(
+    await User.findOneAndUpdate(
       { username: username },
-      { $pull: { expenses: expense } }
+      { $pull: { expenses: expense } },
+      { new: false }
     );
     res.status(201).json({ message: "Expense added successfully!" });
   } catch (err) {

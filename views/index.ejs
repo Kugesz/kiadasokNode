@@ -19,19 +19,22 @@
   <main>
     <div class="transactions">
       <h2>Tranzakciók</h2>
-      <div class="transaction-list">
-        <!-- Tranzakciok -->
-      </div>
+        <div class="transaction-list">
+          <% expenses.forEach(expense => {%>
+            <div class="row">
+              <span><%= expense.description %>: </span> <span><%= expense.amount %>Ft</span>
+            </div>
+          <%});%>
+        </div>
     </div>
 
     <div class="spending-circle">
-      <div class="circle">
-        <p>Eddigi költségek:<br><span id="spendingAmount">0 Ft</span></p>
-      </div>
-      <button class="edit-profile">Profil szerkesztése</button>
-      <form action="/logout?_method=DELETE" method="POST" onsubmit="return confirmLogout();">
-        <button type="submit">Kijelentkezés</button>
-      </form>
+      <svg class="loading-circle" viewBox="0 0 100 100">
+        <!-- Background Circle -->
+        <circle class="background-circle" cx="50" cy="50" r="45"></circle>
+        <!-- Progress Circle -->
+        <circle class="progress-circle" cx="50" cy="50" r="45"></circle>
+      </svg>
     </div>
 
     <div class="balance">
@@ -48,7 +51,6 @@
 </div>
 
 <!--POP UP PROFILSZERKESZTES-->
-<button class="edit-profile" onclick="openPasswordModal()">Profil szerkesztése</button>
 
 <div id="passwordModal" class="modal">
   <div class="modal-content">
@@ -64,6 +66,7 @@
   </div>
 </div>
 
-<script src="/public/js/main.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/circle.js"></script>
 </body>
 </html>

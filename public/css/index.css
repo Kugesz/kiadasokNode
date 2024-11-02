@@ -34,6 +34,7 @@ nav {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 }
 
 nav a {
@@ -76,14 +77,54 @@ nav a:hover {
   font-size: 24px;
 }
 
+div.menu {
+  position: absolute;
+  right: 1%;
+  top: 12%;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  background-color: #d3d8fc;
+  padding: 1%;
+  border-radius: 10px;
+}
+
+div.headline {
+  height: 140px;
+  display: flex;
+  align-items: center;
+  padding-left: 5%;
+  padding-top: 40px;
+}
+
+div.headline > h1 {
+  font-size: 45px;
+}
+
 main {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  padding: 20px;
   gap: 20px;
   padding: 40px;
-  margin-top: 150px;
+}
+
+div.transaction-list {
+  height: 300px;
+  overflow-x: auto;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 15%;
+}
+
+div.transaction-list > div.row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin: 3px 0;
 }
 
 .transactions,
@@ -97,25 +138,24 @@ main {
   text-align: center;
 }
 
-.spending-circle {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.circle {
+.loading-circle {
   width: 300px;
   height: 300px;
-  border-radius: 50%;
-  border: 10px solid rgb(6, 221, 6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 35px;
 }
 
-.circle p {
-  font-size: 24px;
+.background-circle {
+  fill: none;
+  stroke: #e6e6e6;
+  stroke-width: 8;
+}
+
+.progress-circle {
+  fill: none;
+  stroke: #79e911;
+  stroke-width: 8;
+  stroke-linecap: square;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
 }
 
 .edit-profile,

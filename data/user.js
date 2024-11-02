@@ -13,6 +13,11 @@ const userSchema = new mongoose.Schema(
     },
     budget: {
       type: Number,
+      default: 100000,
+    },
+    spending: {
+      type: Number,
+      default: 0,
     },
     expenses: [
       {
@@ -26,4 +31,17 @@ const userSchema = new mongoose.Schema(
   { collection: "users" }
 );
 
-export default mongoose.model("Author", userSchema);
+//Calculate spending everytime it is updated
+userSchema.pre("save", function (next) {
+  console.log("middle");
+  console.log(
+    this.expenses.reduce((total, expense) => total + expense.amount, 0)
+  );
+  this.spending = this.expenses.reduce(
+    (total, expense) => total + expense.amount,
+    0
+  );
+  next();
+});
+
+export default mongoose.model("User", userSchema);
