@@ -11,7 +11,7 @@ export const loadePage = async (req, res, next) => {
     path: "/",
     editing: false,
     username: username,
-    expenses: expenses,
+    expenses: expenses.expenses,
   });
 };
 
