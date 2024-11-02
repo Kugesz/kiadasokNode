@@ -1,7 +1,7 @@
 //menurendszer uzemeltetese!
 
 //Egyenleg hozzaadasa
-function addTransaction() {
+const addTransaction = () => {
   const inputAmount = prompt("Add meg a hozzáadni kívánt összeget:");
 
   if (inputAmount && !isNaN(inputAmount)) {
@@ -21,21 +21,21 @@ function addTransaction() {
 }
 
 //Kijelentkezes
-function confirmLogout() {
+const confirmLogout = () => {
   window.location.href = "/login";
   return true;
 }
 
 //Jelszo valtoztatas
-function openPasswordModal() {
+const openPasswordModal = () => {
   document.getElementById("passwordModal").style.display = "block";
 }
 
-function closePasswordModal() {
+const closePasswordModal = () => {
   document.getElementById("passwordModal").style.display = "none";
 }
 
-function changePassword() {
+const changePassword = () => {
   const newPassword = document.getElementById("newPassword").value;
   const confirmPassword = document.getElementById("confirmPassword").value;
 
