@@ -34,13 +34,14 @@
         <circle class="background-circle" cx="50" cy="50" r="45"></circle>
         <!-- Progress Circle -->
         <circle class="progress-circle" cx="50" cy="50" r="45"></circle>
+        <text x="50" y="50" text-anchor="middle" alignment-baseline="middle" class="loading-text"><%= spending%> Ft</text>
       </svg>
     </div>
 
     <div class="balance">
       <h3>Egyenleged</h3>
       <div class="balance-box">
-        <span id="balanceAmount">0 Ft</span>
+        <span id="balanceAmount"><%= budget%> Ft</span>
         <button id="add-money" onclick="addTransaction()">+</button>
       </div>
       <br>
@@ -48,6 +49,20 @@
       <button class="add-transaction" onclick="addTransaction()">Add hozzá</button>
     </div>
   </main>
+</div>
+
+<!-- Add Kiadas -->
+
+<div class="add-expense">
+    <form action="/newExpense" action="POST">
+        <label for="description">Leírás</label>
+        <input type="text" name="description">
+        <label for="amount">Ár</label>
+        <input type="number" name="amount">
+        <label for="category">Kategória</label>
+        <input type="text" name="category">
+        <button type="submit">Hozzáadása</button>
+    </form>
 </div>
 
 <!--POP UP PROFILSZERKESZTES-->
