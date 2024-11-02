@@ -1,7 +1,8 @@
 import express from "express";
-
+ 
 import * as authController from "../controllers/authChecks.js";
 import * as indexController from "../controllers/index.js";
+import pwController from "../controllers/pw-change.js";
 
 const router = express.Router();
 
@@ -29,6 +30,12 @@ router.post(
   "/setBudget",
   authController.checkAuthenticated,
   indexController.setBudget
+);
+
+router.put(
+  "/changePassword",
+  authController.checkAuthenticated,
+  pwController.changePassword
 );
 
 export default router;

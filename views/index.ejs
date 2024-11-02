@@ -25,13 +25,15 @@
         <p>Eddigi költségek:<br><span id="spendingAmount">0 Ft</span></p>
       </div>
       <button class="edit-profile">Profil szerkesztése</button>
-      <button class="logout" value="DELETE">Kijelentkezés</button>
+      <form action="/logout?_method=DELETE" method="POST" onsubmit="return confirmLogout();">
+        <button type="submit">Kijelentkezés</button>
+      </form>
     </div>
 
     <div class="balance">
       <h3>Egyenleged</h3>
       <div class="balance-box">
-        <span id="balanceAmount">100 000 Ft</span>
+        <span id="balanceAmount">0 Ft</span>
         <button id="add-money" onclick="addTransaction()">+</button>
       </div>
       <br>
@@ -40,15 +42,25 @@
     </div>
   </main>
 </div>
-    <!-- <div class="main">
-        <div class="profile-menu">
-            <a href="/profil">Profil</a>
-            <a href="/settings">Beállítások</a>
-            <form action="/logout?_method=DELETE" method="POST">
-              <button type="submit">Kijelentkezés</button>
-            </form>
-          </div>
-          
-    </div>-->
+
+<!--POP UP PROFILSZERKESZTES-->
+<button class="edit-profile" onclick="openPasswordModal()">Profil szerkesztése</button>
+
+<div id="passwordModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closePasswordModal()">&times;</span>
+    <h2>Jelszó megváltoztatása</h2>
+    <form id="passwordForm" onsubmit="return changePassword()">
+      <label for="newPassword">Új jelszó:</label>
+      <input type="password" id="newPassword" name="newPassword" required>
+      <label for="confirmPassword">Jelszó megerősítése:</label>
+      <input type="password" id="confirmPassword" name="confirmPassword" required>
+      <button type="submit">Mentés</button>
+    </form>
+  </div>
+</div>
+
+<script src="/public/js/main.js"></script>
+<script src="/controllers/logout.js"></script>
 </body>
 </html>
