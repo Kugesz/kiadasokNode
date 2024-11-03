@@ -77,7 +77,7 @@ export const newExpense = async (req, res, next) => {
   try {
     const username = req.user.username;
     const expense = {
-      description: req.bo ** dy.description,
+      description: req.body.description,
       amount: req.body.amount,
       category: req.body.category,
     };
