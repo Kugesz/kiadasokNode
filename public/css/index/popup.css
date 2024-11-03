@@ -10,7 +10,9 @@
   overflow: auto;
   width: 60%;
   height: 40%;
-  background-color: #bcbcbc;
+  padding: 2%;
+  background-color: #d3d8fc;
+  border-radius: 10px;
 }
 
 .popup-content {
