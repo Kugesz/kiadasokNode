@@ -20,7 +20,7 @@ export const loadePage = async (req, res, next) => {
 // in body: description, amount, category
 export const newExpense = async (req, res, next) => {
   try {
-    const username = req.body.username;
+    const username = req.user.username;
     const expense = {
       description: req.body.description,
       amount: req.body.amount,
@@ -45,7 +45,7 @@ export const newExpense = async (req, res, next) => {
 // in body: description, amount, category
 export const editExpense = async (req, res, next) => {
   try {
-    const username = req.body.username;
+    const username = req.user.username;
     const expenseData = req.body.date;
     const newExpense = {
       description: req.body.description,
@@ -96,7 +96,7 @@ export const deleteExpense = async (req, res, next) => {
 
 // in body: budget
 export const setBudget = async (req, res, next) => {
-  const username = req.body.username;
+  const username = req.user.username;
   const budget = req.body.budget;
   try {
     await User.updateOne({ username: username }, { $set: { budget: budget } });
