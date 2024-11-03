@@ -206,6 +206,11 @@ div.transaction-list > div.row {
   padding-right: 7px;
 }
 
+button#add-money, button#add-money > img {
+  aspect-ratio: 1/1;
+  height: 40px;
+}
+
 #add-money:hover {
   background-color: #3498db;
 }
@@ -253,4 +258,16 @@ div.transaction-list > div.row {
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+
+div#add-expense-menu {
+  width: 60%;
+  height: 40%;
+  background-color: #bcbcbc;
+}
+
+form#add-expense-form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

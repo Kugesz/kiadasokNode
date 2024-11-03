@@ -73,8 +73,8 @@ window.onclick = function (event) {
   }
 };
 
-const element = document.getElementById("menu-container");
-const changeMenuState = () => {
+const changeMenuState = (menuID) => {
+  const element = document.getElementById(menuID);
   const displayState = element.style.display;
   if (displayState == "none") {
     element.style.display = "flex";

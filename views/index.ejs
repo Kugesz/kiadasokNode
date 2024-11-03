@@ -1,5 +1,6 @@
 <%- include('./include/head.ejs') %>
     <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/popup.css">
     <link href='https://fonts.googleapis.com/css?family=Kameron' rel='stylesheet'>
     <title>Kiadások</title>
     <style>
@@ -42,46 +43,48 @@
       <h3>Egyenleged</h3>
       <div class="balance-box">
         <span id="balanceAmount"><%= budget%> Ft</span>
-        <button id="add-money" onclick="addTransaction()">+</button>
+        <button id="add-money" onclick="addTransaction('set-budget-menu')">
+            <img src="/img/edit.svg" alt="edit button">
+        </button>
       </div>
       <br>
       <h3>Tranzakció hozzáadása</h3>
-      <button class="add-transaction" onclick="addTransaction()">Add hozzá</button>
+      <button class="add-transaction" onclick="changeMenuState('add-expense-menu')">Add hozzá</button>
     </div>
   </main>
 </div>
 
 <!-- Add Kiadas -->
 
-<div class="add-expense">
-    <form action="/newExpense" action="POST">
-        <label for="description">Leírás</label>
-        <input type="text" name="description">
-        <label for="amount">Ár</label>
-        <input type="number" name="amount">
-        <label for="category">Kategória</label>
-        <input type="text" name="category">
-        <button type="submit">Hozzáadása</button>
-    </form>
+<div class="popup" id="add-expense-menu" style="display: none;">
+  <form action="/newExpense" action="POST" id="add-expense-form">
+    <label for="description">Leírás</label>
+    <input type="text" name="description">
+    <label for="amount">Ár</label>
+    <input type="number" name="amount">
+    <label for="category">Kategória</label>
+    <input type="text" name="category">
+    <button type="submit">Hozzáadása</button>
+  </form>
+  <button onclick="changeMenuState('add-expense-menu')">X</button>
 </div>
 
-<!--POP UP PROFILSZERKESZTES-->
+<!-- Set Balance -->
 
-<div id="passwordModal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closePasswordModal()">&times;</span>
-    <h2>Jelszó megváltoztatása</h2>
-    <form id="passwordForm" onsubmit="return changePassword()">
-      <label for="newPassword">Új jelszó:</label>
-      <input type="password" id="newPassword" name="newPassword" required>
-      <label for="confirmPassword">Jelszó megerősítése:</label>
-      <input type="password" id="confirmPassword" name="confirmPassword" required>
-      <button type="submit">Mentés</button>
-    </form>
-  </div>
+<div class="popup" id="set-budget-menu" style="display: none;">
+  <form action="/setBalance" action="POST" id="add-expense-form">
+    <label for="balance">Egyenleged</label>
+    <input type="number" name="balance">
+    <button type="submit">Beállítás</button>
+  </form>
+  <button onclick="changeMenuState('set-budget-menu')">X</button>
 </div>
 
 <script src="/js/main.js"></script>
 <script src="/js/circle.js"></script>
+<script>
+    var i = <%= JSON.stringify(spending/budget) %>;
+    setProgress(i);
+</script>
 </body>
 </html>

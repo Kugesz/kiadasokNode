@@ -1,14 +1,10 @@
-/* styles.css */
-body {
-    font-family: Arial, sans-serif;
-}
-
 .popup {
     display: none; /* Hidden by default */
     position: fixed; 
     z-index: 1; 
-    left: 0;
-    top: 0;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     width: 100%; 
     height: 100%; 
     overflow: auto; 
