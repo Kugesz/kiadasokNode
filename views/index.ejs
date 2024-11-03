@@ -43,7 +43,7 @@
       <h3>Egyenleged</h3>
       <div class="balance-box">
         <span id="balanceAmount"><%= budget%> Ft</span>
-        <button id="add-money" onclick="addTransaction('set-budget-menu')">
+        <button id="add-money" onclick="changeMenuState('set-budget-menu')">
             <img src="/img/edit.svg" alt="edit button">
         </button>
       </div>
@@ -57,7 +57,7 @@
 <!-- Add Kiadas -->
 
 <div class="popup" id="add-expense-menu" style="display: none;">
-  <form action="/newExpense" action="POST" id="add-expense-form">
+  <form onsubmit="addTransaction(event)" id="add-expense-form">
     <label for="description">Leírás</label>
     <input type="text" name="description">
     <label for="amount">Ár</label>
@@ -72,9 +72,9 @@
 <!-- Set Balance -->
 
 <div class="popup" id="set-budget-menu" style="display: none;">
-  <form action="/setBalance" action="POST" id="add-expense-form">
-    <label for="balance">Egyenleged</label>
-    <input type="number" name="balance">
+  <form onsubmit="setBudget(event)" id="set-budget-form">
+    <label for="budget">Egyenleged</label>
+    <input type="number" name="budget">
     <button type="submit">Beállítás</button>
   </form>
   <button onclick="changeMenuState('set-budget-menu')">X</button>
