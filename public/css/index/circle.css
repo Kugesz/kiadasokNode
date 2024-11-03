@@ -17,3 +17,7 @@
   transform: rotate(-90deg);
   transform-origin: 50% 50%;
 }
+
+text#spending-text {
+  font-size: 10px;
+}

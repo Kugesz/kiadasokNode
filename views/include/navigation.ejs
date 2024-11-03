@@ -6,14 +6,23 @@
       <h1>GBD Banking</h1>
     </div>
     <div>
-      <button class="user-icon" id="menu-click" onclick="changeMenuState('menu-container')">
+      <button
+        class="user-icon"
+        id="menu-click"
+        onclick="changeMenuState('menu-container')"
+      >
         👤
       </button>
     </div>
   </nav>
   <div class="menu" id="menu-container" style="display: none">
-    <a href="/profil">Profil</a>
-    <a href="/settings">Beállítások</a>
-    <a href="/logout">Kijelentkezés</a>
+    <button
+      onclick="changeMenuState('menu-container'), changeMenuState('profile-menu')"
+    >
+      Profil
+    </button>
+    <form action="/logout?_method=DELETE" method="POST">
+      <button type="submit">Kijelentkezés</button>
+    </form>
   </div>
 </header>

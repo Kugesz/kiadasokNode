@@ -1,6 +1,8 @@
 <%- include('./include/head.ejs') %>
-    <link rel="stylesheet" href="/css/index.css">
-    <link rel="stylesheet" href="/css/popup.css">
+    <link rel="stylesheet" href="/css/index/index.css">
+    <link rel="stylesheet" href="/css/index/circle.css">
+    <link rel="stylesheet" href="/css/index/navigation.css">
+    <link rel="stylesheet" href="/css/index/popup.css">
     <link href='https://fonts.googleapis.com/css?family=Kameron' rel='stylesheet'>
     <title>Kiadások</title>
     <style>
@@ -20,7 +22,7 @@
   <main>
     <div class="transactions">
       <h2>Tranzakciók</h2>
-        <div class="transaction-list">
+        <div class="transaction-list" id="transaction-list">
           <% expenses.forEach(expense => {%>
             <div class="row">
               <span><%= expense.description %>: </span> <span><%= expense.amount %>Ft</span>
@@ -31,11 +33,9 @@
 
     <div class="spending-circle">
       <svg class="loading-circle" viewBox="0 0 100 100">
-        <!-- Background Circle -->
         <circle class="background-circle" cx="50" cy="50" r="45"></circle>
-        <!-- Progress Circle -->
         <circle class="progress-circle" cx="50" cy="50" r="45"></circle>
-        <text x="50" y="50" text-anchor="middle" alignment-baseline="middle" class="loading-text"><%= spending%> Ft</text>
+        <text x="50" y="50" text-anchor="middle" alignment-baseline="middle" class="loading-text" id="spending-text"><%= spending%> Ft</text>
       </svg>
     </div>
 
@@ -78,6 +78,25 @@
     <button type="submit">Beállítás</button>
   </form>
   <button onclick="changeMenuState('set-budget-menu')">X</button>
+</div>
+
+<!-- Profile -->
+
+<div class="popup" id="profile-menu" style="display: none;">
+  <form onsubmit="changeUsername(event)" id="change-username-form">
+    <input type="text" name="name" required placeholder="Felhasználónév">
+    <input type="password" name="password" required placeholder="Jelszó">
+    <button type="submit">Módosítás</button>
+  </form>
+
+  <!-- Change password -->
+  <form onsubmit="changePassword(event)" id="change-password-form">
+    <input type="password" name="password" required placeholder="Jelszó">
+    <input type="password" name="new-password" required placeholder="Új jelszó">
+    <input type="password" name="new-password-again" required placeholder="Jelszó újra">
+    <button type="submit">Módosítás</button>
+  </form>
+  <button onclick="changeMenuState('profile-menu')">X</button>
 </div>
 
 <script src="/js/main.js"></script>

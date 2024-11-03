@@ -12,6 +12,7 @@ import methodOverride from "method-override";
 import mongoose from "mongoose";
 
 import __dirname from "./util/rootpath.js";
+import user from "./routes/user.js";
 import index from "./routes/index.js";
 import login from "./routes/login.js";
 import register from "./routes/register.js";
@@ -55,6 +56,7 @@ app.use(passport.session());
 app.use(methodOverride("_method"));
 
 app.use("/", index);
+app.use("/user", user);
 app.use("/login", login);
 app.use("/register", register);
 app.use("/logout", logout);

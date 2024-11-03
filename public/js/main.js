@@ -1,8 +1,18 @@
+const renderNewTransaction = (description, amount) => {
+  const transactionListElement = document.getElementById("transaction-list");
+
+  transactionListElement.innerHTML += `
+  <div class="row">
+    <span>${description}: </span> <span>${amount}Ft</span>
+  </div>`;
+};
+
+const checkOverSpending = () => {};
+
 //Egyenleg hozzaadasa
 const addTransaction = async (event) => {
   event.preventDefault();
 
-  console.log("iras");
   const form = document.getElementById("add-expense-form");
   const description = form.description.value;
   const amount = form.amount.value;
@@ -15,7 +25,7 @@ const addTransaction = async (event) => {
   };
 
   try {
-    const response = await fetch("/newExpense", {
+    const response = await fetch("/user/newExpense", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -23,10 +33,9 @@ const addTransaction = async (event) => {
       body: JSON.stringify(data),
     });
 
-    console.log(response);
     if (response.ok) {
       const result = await response.json();
-      console.log(result.message);
+      renderNewTransaction(description, amount);
     } else {
       console.log("Failed to send data.");
     }
@@ -47,7 +56,7 @@ const setBudget = async (event) => {
   };
 
   try {
-    const response = await fetch("/setBudget", {
+    const response = await fetch("/user/setBudget", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -66,59 +75,39 @@ const setBudget = async (event) => {
   }
 };
 
-//Kijelentkezes
-const confirmLogout = () => {
-  window.location.href = "/login";
-  return true;
-};
+const changePassword = async (event) => {
+  event.preventDefault();
 
-//Jelszo valtoztatas
-const openPasswordModal = () => {
-  document.getElementById("passwordModal").style.display = "block";
-};
+  const form = document.getElementById("change-password-form");
+  const password = form.password.value;
+  const newPassword = form.new - password.value;
+  const newPasswordAgain = form.new - password - again.value;
 
-const closePasswordModal = () => {
-  document.getElementById("passwordModal").style.display = "none";
-};
-
-const changePassword = () => {
-  const newPassword = document.getElementById("newPassword").value;
-  const confirmPassword = document.getElementById("confirmPassword").value;
-
-  if (newPassword !== confirmPassword) {
-    alert("A jelszavak nem egyeznek!");
-    return false;
+  if (newPassword != newPasswordAgain) {
+    //! Error
   }
-
-  fetch("/change-password", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ password: newPassword }),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      if (data.success) {
-        alert("Jelszó sikeresen megváltoztatva!");
-        closePasswordModal();
-      } else {
-        alert("Hiba történt a jelszó megváltoztatása során!");
-      }
-    })
-    .catch((error) => {
-      console.error("Hálózati hiba:", error);
-      alert("Hiba történt a jelszó megváltoztatása során!");
+  try {
+    const response = await fetch("/user/changePassword", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ password: newPassword }),
     });
-
-  return false;
+    if (response.ok) {
+      return true;
+    } else {
+      return false;
+    }
+  } catch (err) {
+    console.error(err);
+  }
 };
 
-window.onclick = function (event) {
-  const modal = document.getElementById("passwordModal");
-  if (event.target === modal) {
-    modal.style.display = "none";
-  }
+const changeUsername = async (event) => {
+  event.preventDefault();
+
+  const form = document.getElementById("change-username-form");
 };
 
 menuOpen = false;
