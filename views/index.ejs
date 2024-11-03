@@ -64,6 +64,7 @@
     <input type="number" name="amount">
     <label for="category">Kategória</label>
     <input type="text" name="category">
+    <p id="expense-error" class="error"></p>
     <button type="submit">Hozzáadása</button>
   </form>
   <button onclick="changeMenuState('add-expense-menu')">X</button>
@@ -75,6 +76,7 @@
   <form onsubmit="setBudget(event)" id="set-budget-form">
     <label for="budget">Egyenleged</label>
     <input type="number" name="budget">
+    <p id="budget-error" class="error"></p>
     <button type="submit">Beállítás</button>
   </form>
   <button onclick="changeMenuState('set-budget-menu')">X</button>
@@ -87,6 +89,7 @@
     <input type="password" name="password" required placeholder="Jelszó">
     <input type="password" name="new-password" required placeholder="Új jelszó">
     <input type="password" name="new-password-again" required placeholder="Jelszó újra">
+    <p id="profile-error" class="error"></p>
     <button type="submit">Módosítás</button>
   </form>
   <button onclick="changeMenuState('profile-menu')">X</button>

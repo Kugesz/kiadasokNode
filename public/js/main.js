@@ -72,7 +72,7 @@ const addTransaction = async (event) => {
       checkOverSpending();
       changeMenuState("add-expense-menu");
     } else {
-      console.log("Failed to send data.");
+      throw new Error("Error posting data!");
     }
   } catch (err) {
     console.error("Hiba lépett fel egy új kiadás hozzáadásánál!");

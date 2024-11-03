@@ -29,12 +29,16 @@ export const getUserSpending = async (req, res, next) => {
 // in body: password
 export const changePassword = async (req, res, next) => {
   const username = req.user.username;
-  const password = req.body.password;
+  const newPassword = req.body.password;
 
   try {
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
 
-    await User.findOne({ username: username }, { password: hashedPassword });
+    await User.findOneAndUpdate(
+      { username: username },
+      { $setField: { password: hashedPassword } },
+      { new: false }
+    );
 
     //! Jo kerdes hogy ez mukodik kesobbiekben teszt szukseges
     req.logout((err) => {
