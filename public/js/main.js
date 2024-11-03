@@ -1,20 +1,70 @@
 //Egyenleg hozzaadasa
-const addTransaction = () => {
-  const inputAmount = prompt("Add meg a hozzáadni kívánt összeget:");
+const addTransaction = async (event) => {
+  event.preventDefault();
 
-  if (inputAmount && !isNaN(inputAmount)) {
-    const balanceElement = document.getElementById("balanceAmount");
+  console.log("iras");
+  const form = document.getElementById("add-expense-form");
+  const description = form.description.value;
+  const amount = form.amount.value;
+  const category = form.category.value;
 
-    let currentBalance =
-      parseFloat(balanceElement.innerText.replace(/[^0-9.-]+/g, "")) || 0;
-    currentBalance += parseFloat(inputAmount);
+  data = {
+    description: description,
+    amount: amount,
+    category: category,
+  };
 
-    balanceElement.innerText = currentBalance.toLocaleString("hu-HU", {
-      style: "currency",
-      currency: "HUF",
+  console.log(data);
+
+  try {
+    const response = await fetch("/newExpense", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
     });
-  } else {
-    alert("Kérlek, adj meg egy érvényes számot!");
+
+    console.log(response);
+    if (response.ok) {
+      const result = await response.json();
+      console.log(result.message);
+    } else {
+      console.log("Failed to send data.");
+    }
+  } catch (err) {
+    console.error("Hiba lépett fel egy új kiadás hozzáadásánál!");
+  }
+};
+
+// Egyenleg valtoztatas
+const setBudget = async (event) => {
+  event.preventDefault();
+
+  const form = document.getElementById("set-budget-form");
+  const budget = form.budget.value;
+
+  data = {
+    budget: budget,
+  };
+
+  try {
+    const response = await fetch("/setBudget", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (response.ok) {
+      const result = await response.json();
+      console.log(result.message);
+    } else {
+      console.log("Failed to send data.");
+    }
+  } catch (err) {
+    console.error("Hiba lepett fel egy új kiadás hozzáadásánál!");
   }
 };
 
