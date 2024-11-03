@@ -58,6 +58,7 @@
 
 <div class="popup" id="add-expense-menu" style="display: none;">
   <form onsubmit="addTransaction(event)" id="add-expense-form">
+    <h2><b>Kiadás hozzáadása</b></h2>
     <label for="description">Leírás</label>
     <input type="text" name="description">
     <label for="amount">Ár</label>
@@ -67,32 +68,34 @@
     <p id="expense-error" class="error"></p>
     <button type="submit">Hozzáadása</button>
   </form>
-  <button onclick="changeMenuState('add-expense-menu')">X</button>
+  <button class="close" onclick="changeMenuState('add-expense-menu')">X</button>
 </div>
 
 <!-- Set Balance -->
 
 <div class="popup" id="set-budget-menu" style="display: none;">
   <form onsubmit="setBudget(event)" id="set-budget-form">
+  <h2><b>Egyenleged változtatása</b></h2>
     <label for="budget">Egyenleged</label>
     <input type="number" name="budget">
     <p id="budget-error" class="error"></p>
     <button type="submit">Beállítás</button>
   </form>
-  <button onclick="changeMenuState('set-budget-menu')">X</button>
+  <button class="close" onclick="changeMenuState('set-budget-menu')">X</button>
 </div>
 
 <!-- Profile -->
 
 <div class="popup" id="profile-menu" style="display: none;">
   <form onsubmit="changePassword(event)" id="change-password-form">
+    <h2><b>Jelszó változtatása</b></h2>
     <input type="password" name="password" required placeholder="Jelszó">
     <input type="password" name="new-password" required placeholder="Új jelszó">
     <input type="password" name="new-password-again" required placeholder="Jelszó újra">
     <p id="profile-error" class="error"></p>
     <button type="submit">Módosítás</button>
   </form>
-  <button onclick="changeMenuState('profile-menu')">X</button>
+  <button class="close" onclick="changeMenuState('profile-menu')">X</button>
 </div>
 
 <script src="/js/main.js"></script>
@@ -105,7 +108,7 @@
   }else {
     setProgress(spending/budget)
   }
-    
+
 </script>
 </body>
 </html>
