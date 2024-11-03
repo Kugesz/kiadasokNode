@@ -47,4 +47,10 @@ router.put(
   userController.changePassword
 );
 
+router.get(
+  "/checkPassword",
+  authController.checkAuthenticated,
+  userController.checkPassword
+);
+
 export default router;

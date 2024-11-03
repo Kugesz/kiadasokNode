@@ -28,21 +28,25 @@ export const getUserSpending = async (req, res, next) => {
 
 // in body: password
 export const changePassword = async (req, res, next) => {
-  try {
-    const username = req.user.username;
-    const password = req.body.password;
+  const username = req.user.username;
+  const password = req.body.password;
 
+  try {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     await User.findOne({ username: username }, { password: hashedPassword });
 
     //! Jo kerdes hogy ez mukodik kesobbiekben teszt szukseges
-    req.logout();
-    res.redirect("/login");
-    res
-      .status(201)
-      .json({ message: "Your password change was successfull" })
-      .redirect("/login");
+    req.logout((err) => {
+      if (err) {
+        return res.status(500).json({ message: "Error logging out" });
+      }
+      res.redirect("/login");
+    });
+    // res
+    //   .status(201)
+    //   .json({ message: "Your password change was successfull" })
+    //   .redirect("/login");
   } catch (err) {
     console.error(err);
     res
@@ -56,7 +60,6 @@ export const changePassword = async (req, res, next) => {
 };
 
 const updateSpendings = async (user) => {
-  console.log(user);
   try {
     const sum = user.expenses.reduce((sum, item) => sum + item.amount, 0);
     await User.updateOne({ username: user.username }, { spending: sum });
@@ -70,7 +73,7 @@ export const newExpense = async (req, res, next) => {
   try {
     const username = req.user.username;
     const expense = {
-      description: req.body.description,
+      description: req.bo ** dy.description,
       amount: req.body.amount,
       category: req.body.category,
     };
@@ -154,5 +157,30 @@ export const setBudget = async (req, res, next) => {
     res
       .status(500)
       .json({ message: "An error occurred while setting budget!", error: err });
+  }
+};
+
+export const checkPassword = async (req, res, next) => {
+  const username = req.user.username;
+  const password = req.body.password;
+
+  try {
+    const dbPassword = await Users.findOne(
+      { username: "yourUsername" },
+      { password: 1, _id: 0 }
+    );
+
+    const hashedPassword = bcrypt.hash(password, 10);
+
+    if (bcrypt.compare(dbPassword, hashedPassword)) {
+      res.status(201).json({ match: true });
+    } else {
+      res.status(201).json({ match: false });
+    }
+  } catch (err) {
+    res.status(500).json({
+      message: "There was an error checking the password!",
+      error: err,
+    });
   }
 };

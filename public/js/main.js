@@ -7,7 +7,40 @@ const renderNewTransaction = (description, amount) => {
   </div>`;
 };
 
-const checkOverSpending = () => {};
+const checkOverSpending = async () => {
+  try {
+    responseBudget = await fetch("/user/getBudget");
+    responseSpending = await fetch("/user/getSpending");
+
+    if (responseBudget.ok && responseSpending.ok) {
+      const budgetJSON = await responseBudget.json();
+      const spendingJSON = await responseSpending.json();
+
+      const budget = budgetJSON.budget;
+      const spending = spendingJSON.spending;
+
+      const spendingCircleFillElement =
+        document.getElementById("progress-circle");
+      const spendingTextElement = document.getElementById("spending-text");
+      if (spending > budget) {
+        spendingCircleFillElement.style.stroke = "red";
+        spendingTextElement.style.fill = "red";
+      } else {
+        spendingCircleFillElement.style.stroke = "#79e911";
+        spendingTextElement.style.fill = "#79e911";
+      }
+    } else {
+      throw new Error("Failed to get data.");
+    }
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+const updateBalance = (newBalance) => {
+  const balanceAmountElement = document.getElementById("balanceAmount");
+  balanceAmountElement.innerText = newBalance;
+};
 
 //Egyenleg hozzaadasa
 const addTransaction = async (event) => {
@@ -36,6 +69,8 @@ const addTransaction = async (event) => {
     if (response.ok) {
       const result = await response.json();
       renderNewTransaction(description, amount);
+      checkOverSpending();
+      changeMenuState("add-expense-menu");
     } else {
       console.log("Failed to send data.");
     }
@@ -66,7 +101,9 @@ const setBudget = async (event) => {
 
     if (response.ok) {
       const result = await response.json();
-      console.log(result.message);
+      updateBalance(budget);
+      checkOverSpending();
+      changeMenuState("set-budget-menu");
     } else {
       console.log("Failed to send data.");
     }
@@ -79,9 +116,9 @@ const changePassword = async (event) => {
   event.preventDefault();
 
   const form = document.getElementById("change-password-form");
-  const password = form.password.value;
-  const newPassword = form.new - password.value;
-  const newPasswordAgain = form.new - password - again.value;
+  const password = form.elements["password"].value;
+  const newPassword = form.elements["new-password"].value;
+  const newPasswordAgain = form.elements["new-password-again"].value;
 
   if (newPassword != newPasswordAgain) {
     //! Error
@@ -95,7 +132,7 @@ const changePassword = async (event) => {
       body: JSON.stringify({ password: newPassword }),
     });
     if (response.ok) {
-      return true;
+      changeMenuState("profile-menu");
     } else {
       return false;
     }
@@ -104,11 +141,41 @@ const changePassword = async (event) => {
   }
 };
 
-const changeUsername = async (event) => {
-  event.preventDefault();
+// const changeUsername = async (event) => {
+//   event.preventDefault();
 
-  const form = document.getElementById("change-username-form");
-};
+//   const form = document.getElementById("change-username-form");
+//   const password = form.password.value;
+//   const newUsername = form.new - username.value;
+
+//   data = {
+//     password: password,
+//   };
+
+//   try {
+//     const response = await fetch("/user/checkPassword", {
+//       method: GET,
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify(data),
+//     });
+
+//     if(!response.ok){
+//       throw new Error("There was a problem checking the password!")
+//     }
+
+//     const result = await response.json();
+
+//     if(!result.match){
+//        change uesername
+//     }else{
+//        error a jelszo nem jo
+//     }
+//   } catch (err) {
+//     console.error(err);
+//   }
+// };
 
 menuOpen = false;
 const changeMenuState = (menuID) => {
@@ -121,4 +188,8 @@ const changeMenuState = (menuID) => {
     menuOpen = false;
     element.style.display = "none";
   }
+};
+
+window.onload = () => {
+  checkOverSpending();
 };

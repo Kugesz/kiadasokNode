@@ -34,7 +34,7 @@
     <div class="spending-circle">
       <svg class="loading-circle" viewBox="0 0 100 100">
         <circle class="background-circle" cx="50" cy="50" r="45"></circle>
-        <circle class="progress-circle" cx="50" cy="50" r="45"></circle>
+        <circle class="progress-circle" id="progress-circle" cx="50" cy="50" r="45"></circle>
         <text x="50" y="50" text-anchor="middle" alignment-baseline="middle" class="loading-text" id="spending-text"><%= spending%> Ft</text>
       </svg>
     </div>
@@ -83,13 +83,6 @@
 <!-- Profile -->
 
 <div class="popup" id="profile-menu" style="display: none;">
-  <form onsubmit="changeUsername(event)" id="change-username-form">
-    <input type="text" name="name" required placeholder="Felhasználónév">
-    <input type="password" name="password" required placeholder="Jelszó">
-    <button type="submit">Módosítás</button>
-  </form>
-
-  <!-- Change password -->
   <form onsubmit="changePassword(event)" id="change-password-form">
     <input type="password" name="password" required placeholder="Jelszó">
     <input type="password" name="new-password" required placeholder="Új jelszó">
@@ -102,8 +95,14 @@
 <script src="/js/main.js"></script>
 <script src="/js/circle.js"></script>
 <script>
-    var i = <%= JSON.stringify(spending/budget) %>;
-    setProgress(i);
+  const spending = <%= JSON.stringify(spending) %>;
+  const budget = <%= JSON.stringify(budget) %>;
+  if(spending > budget){
+    setProgress(100);
+  }else {
+    setProgress(spending/budget)
+  }
+    
 </script>
 </body>
 </html>
