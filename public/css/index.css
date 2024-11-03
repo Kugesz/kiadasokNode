@@ -260,12 +260,6 @@ button#add-money, button#add-money > img {
   cursor: pointer;
 }
 
-div#add-expense-menu {
-  width: 60%;
-  height: 40%;
-  background-color: #bcbcbc;
-}
-
 form#add-expense-form{
   display: flex;
   flex-direction: column;
