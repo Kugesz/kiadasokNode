@@ -6,13 +6,13 @@
   top: 50%;
   transform: translate(-50%, -50%);
   width: 35%;
-  height: 30%;
+  height: 40%;
   overflow: auto;
   padding: 2%;
   background-color: #d3d8fc;
   border-radius: 10px;
   border: 1px solid grey;
-  box-shadow: 0px 4px 4px;
+  box-shadow: 0px 4px 4px 0.5px rgba(0, 0, 0, 0.5);
 }
 
 .popup-content {
@@ -23,7 +23,7 @@
   width: 80%;
 }
 
-.popup label{
+.popup label {
   text-align: left;
 }
 
@@ -59,8 +59,8 @@
 }
 
 .form-label {
-  display: block;         
-  text-align: left;       
-  margin-bottom: 5px;       
-  font-weight: bold;        
+  display: block;
+  text-align: left;
+  margin-bottom: 5px;
+  font-weight: bold;
 }
