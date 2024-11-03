@@ -14,8 +14,6 @@ const addTransaction = async (event) => {
     category: category,
   };
 
-  console.log(data);
-
   try {
     const response = await fetch("/newExpense", {
       method: "POST",
@@ -123,12 +121,15 @@ window.onclick = function (event) {
   }
 };
 
+menuOpen = false;
 const changeMenuState = (menuID) => {
   const element = document.getElementById(menuID);
   const displayState = element.style.display;
-  if (displayState == "none") {
+  if (!menuOpen && displayState == "none") {
+    menuOpen = true;
     element.style.display = "flex";
-  } else {
+  } else if (menuOpen && displayState == "flex") {
+    menuOpen = false;
     element.style.display = "none";
   }
 };
