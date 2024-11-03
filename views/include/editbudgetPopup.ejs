@@ -1,0 +1,9 @@
+<div class="popup" id="set-budget-menu" style="display: none">
+  <form onsubmit="setBudget(event)" id="set-budget-form">
+    <label for="budget">Egyenleged</label>
+    <input type="number" name="budget" />
+    <p id="budget-error" class="error"></p>
+    <button type="submit">Beállítás</button>
+  </form>
+  <button onclick="changeMenuState('set-budget-menu')">X</button>
+</div>
