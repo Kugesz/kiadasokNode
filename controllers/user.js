@@ -66,6 +66,7 @@ export const changePassword = async (req, res, next) => {
 const updateSpendings = async (user) => {
   try {
     const sum = user.expenses.reduce((sum, item) => sum + item.amount, 0);
+    console.log(user, sum);
     await User.updateOne({ username: user.username }, { spending: sum });
   } catch (err) {
     console.error(err);
