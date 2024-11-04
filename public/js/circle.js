@@ -4,6 +4,5 @@ function setProgress(percentage) {
   const circumference = 2 * Math.PI * radius;
 
   circle.style.strokeDasharray = circumference;
-  circle.style.strokeDashoffset =
-    circumference - (percentage / 100) * circumference;
+  circle.style.strokeDashoffset = circumference - percentage * circumference;
 }

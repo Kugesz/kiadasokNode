@@ -6,7 +6,7 @@
   top: 50%;
   transform: translate(-50%, -50%);
   width: 35%;
-  height: 40%;
+  min-height: 40%;
   overflow: auto;
   padding: 2%;
   background-color: #d3d8fc;
@@ -28,7 +28,7 @@
 }
 
 .close {
-  color: #aaa;
+  color: #888888;
   float: right;
   font-size: 30px;
   font-weight: bold;
@@ -50,6 +50,7 @@
 
 .confirm {
   font-size: 20px;
+  margin-top: 20px;
   padding: 10px;
   border-radius: 30px;
   box-shadow: 0px 2px 2px grey;

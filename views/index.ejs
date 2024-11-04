@@ -55,46 +55,16 @@
 </div>
 
 <!-- Add Kiadas -->
+<%- include('./include/addExpensePopup.ejs') %>
 
-<div class="popup" id="add-expense-menu" style="display: none;">
-  <form onsubmit="addTransaction(event)" id="add-expense-form">
-    <h2><b>Kiadás hozzáadása</b></h2> <br>
-    <input type="text" name="description" required placeholder="Kiadás leírása"> <br>
-    <input type="number" name="amount" required placeholder="Kiadás ára"> <br>
-    <input type="text" name="category" required placeholder="Kiadás kategóriája"> <br>
-    <p id="expense-error" class="error"></p>
-    <button type="submit" class="confirm">Hozzáadása</button>
-  </form>
-  <button class="close" onclick="changeMenuState('add-expense-menu')">X</button>
-</div>
 
 <!-- Set Balance -->
+<%- include('./include/editbudgetPopup.ejs') %>
 
-<div class="popup" id="set-budget-menu" style="display: none;">
-  <form onsubmit="setBudget(event)" id="set-budget-form">
-  <h2><b>Egyenleged változtatása</b></h2>
-  <br>
-    <label for="budget">Egyenleged</label><br>
-    <input type="number" name="budget"  required placeholder="Hozzáadás mértéke">
-    <p id="budget-error" class="error"></p>
-    <button type="submit" class="confirm">Beállítás</button>
-  </form>
-  <button class="close" onclick="changeMenuState('set-budget-menu')">X</button>
-</div>
 
 <!-- Profile -->
+<%- include('./include/profilePopup.ejs') %>
 
-<div class="popup" id="profile-menu" style="display: none;">
-  <form onsubmit="changePassword(event)" id="change-password-form">
-    <h2><b>Jelszó változtatása</b></h2><br>
-    <input type="password" name="password" required placeholder="Jelszó"><br><br>
-    <input type="password" name="new-password" required placeholder="Új jelszó"><br><br>
-    <input type="password" name="new-password-again" required placeholder="Jelszó újra"><br><br>
-    <p id="profile-error" class="error"></p>
-    <button type="submit" class="confirm">Módosítás</button>
-  </form>
-  <button class="close" onclick="changeMenuState('profile-menu')">X</button>
-</div>
 
 <script src="/js/main.js"></script>
 <script src="/js/circle.js"></script>
@@ -104,6 +74,7 @@
   if(spending > budget){
     setProgress(100);
   }else {
+    console.log(spending/budget)
     setProgress(spending/budget)
   }
 

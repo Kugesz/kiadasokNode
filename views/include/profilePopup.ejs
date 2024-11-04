@@ -1,20 +1,27 @@
 <div class="popup" id="profile-menu" style="display: none">
   <form onsubmit="changePassword(event)" id="change-password-form">
-    <input type="password" name="password" required placeholder="Jelszó" />
+    <h2><b>Jelszó változtatása</b></h2>
+    <br />
+    <input
+      type="password"
+      name="password"
+      required
+      placeholder="Jelszó"
+    /><br /><br />
     <input
       type="password"
       name="new-password"
       required
       placeholder="Új jelszó"
-    />
+    /><br /><br />
     <input
       type="password"
       name="new-password-again"
       required
       placeholder="Jelszó újra"
-    />
+    /><br /><br />
     <p id="profile-error" class="error"></p>
-    <button type="submit">Módosítás</button>
+    <button type="submit" class="confirm">Módosítás</button>
   </form>
-  <button onclick="changeMenuState('profile-menu')">X</button>
+  <button class="close" onclick="changeMenuState('profile-menu')">X</button>
 </div>

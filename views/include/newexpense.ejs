@@ -1,8 +1,25 @@
-<div class="new-expense-popup">
-  <form action="/index/newExpense" method="POST">
-    <input type="text" name="description" />
-    <input type="number" name="amount" />
-    <input type="text" name="category" />
-    <button type="submit">Hozzáadás</button>
+<div class="popup" id="add-expense-menu" style="display: none">
+  <form onsubmit="addTransaction(event)" id="add-expense-form">
+    <h2><b>Kiadás hozzáadása</b></h2>
+    <br />
+    <input
+      type="text"
+      name="description"
+      required
+      placeholder="Kiadás leírása"
+    />
+    <br />
+    <input type="number" name="amount" required placeholder="Kiadás ára" />
+    <br />
+    <input
+      type="text"
+      name="category"
+      required
+      placeholder="Kiadás kategóriája"
+    />
+    <br />
+    <p id="expense-error" class="error"></p>
+    <button type="submit" class="confirm">Hozzáadása</button>
   </form>
+  <button class="close" onclick="changeMenuState('add-expense-menu')">X</button>
 </div>

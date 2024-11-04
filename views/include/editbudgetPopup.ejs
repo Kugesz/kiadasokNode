@@ -1,9 +1,16 @@
 <div class="popup" id="set-budget-menu" style="display: none">
   <form onsubmit="setBudget(event)" id="set-budget-form">
-    <label for="budget">Egyenleged</label>
-    <input type="number" name="budget" />
+    <h2><b>Egyenleged változtatása</b></h2>
+    <br />
+    <label for="budget">Egyenleged</label><br />
+    <input
+      type="number"
+      name="budget"
+      required
+      placeholder="Hozzáadás mértéke"
+    />
     <p id="budget-error" class="error"></p>
-    <button type="submit">Beállítás</button>
+    <button type="submit" class="confirm">Beállítás</button>
   </form>
-  <button onclick="changeMenuState('set-budget-menu')">X</button>
+  <button class="close" onclick="changeMenuState('set-budget-menu')">X</button>
 </div>
