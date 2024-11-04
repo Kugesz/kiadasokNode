@@ -42,6 +42,24 @@ const updateBalance = (newBalance) => {
   balanceAmountElement.innerText = newBalance;
 };
 
+const updateSpending = async () => {
+  try {
+    const response = await fetch("/user/getSpending");
+    if (!response.ok) {
+      throw new Error("There was a problem getting the data!");
+    }
+
+    const result = await response.json();
+
+    console.log(result);
+
+    const spendingTextElement = document.getElementById("spending-text");
+    spendingTextElement.textContent = result.spending + " " + Ft;
+  } catch (err) {
+    console.error("There was an error getting the spendings!");
+  }
+};
+
 //Egyenleg hozzaadasa
 const addTransaction = async (event) => {
   event.preventDefault();
@@ -70,6 +88,7 @@ const addTransaction = async (event) => {
       const result = await response.json();
       renderNewTransaction(description, amount);
       checkOverSpending();
+      updateSpending();
       changeMenuState("add-expense-menu");
     } else {
       throw new Error("Error posting data!");
