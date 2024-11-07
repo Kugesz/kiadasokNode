@@ -59,6 +59,22 @@ const updateBalance = (newBalance) => {
   balanceAmountElement.innerText = newBalance;
 };
 
+const updateSpending = async () => {
+  try {
+    const response = await fetch("/user/getSpending");
+    if (!response.ok) {
+      throw new Error("There was a problem getting the data!");
+    }
+
+    const result = await response.json();
+
+    const spendingTextElement = document.getElementById("spending-text");
+    spendingTextElement.textContent = result.spending + " " + Ft;
+  } catch (err) {
+    console.error("There was an error getting the spendings!");
+  }
+};
+
 //Egyenleg hozzaadasa
 const addTransaction = async (event) => {
   event.preventDefault();
@@ -83,15 +99,14 @@ const addTransaction = async (event) => {
       body: JSON.stringify(data),
     });
 
-    if (response.ok) {
-      const result = await response.json();
-      renderNewTransaction(description, amount);
-      checkOverSpending();
-      updateSpendings();
-      changeMenuState("add-expense-menu");
-    } else {
+    if (!response.ok) {
       throw new Error("Error posting data!");
     }
+    const result = await response.json();
+    renderNewTransaction(description, amount);
+    checkOverSpending();
+    updateSpending();
+    changeMenuState("add-expense-menu");
   } catch (err) {
     console.error("Hiba lépett fel egy új kiadás hozzáadásánál!");
   }
@@ -117,14 +132,13 @@ const setBudget = async (event) => {
       body: JSON.stringify(data),
     });
 
-    if (response.ok) {
-      const result = await response.json();
-      updateBalance(budget);
-      checkOverSpending();
-      changeMenuState("set-budget-menu");
-    } else {
-      console.error("Failed to send data.");
+    if (!response.ok) {
+      throw new Error("Failed to post data!");
     }
+    const result = await response.json();
+    updateBalance(budget);
+    checkOverSpending();
+    changeMenuState("set-budget-menu");
   } catch (err) {
     console.error("Hiba lepett fel egy új kiadás hozzáadásánál!");
   }
@@ -149,11 +163,10 @@ const changePassword = async (event) => {
       },
       body: JSON.stringify({ password: newPassword }),
     });
-    if (response.ok) {
-      changeMenuState("profile-menu");
-    } else {
-      return false;
+    if (!response.ok) {
+      throw new Error("There was an error putting the data!");
     }
+    changeMenuState("profile-menu");
   } catch (err) {
     console.error(err);
   }
