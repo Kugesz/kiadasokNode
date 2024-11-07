@@ -69,9 +69,9 @@ const updateSpending = async () => {
     const result = await response.json();
 
     const spendingTextElement = document.getElementById("spending-text");
-    spendingTextElement.textContent = result.spending + " " + Ft;
+    spendingTextElement.textContent = result.spending + " Ft";
   } catch (err) {
-    console.error("There was an error getting the spendings!");
+    console.error("There was an error getting the spendings!", err);
   }
 };
 

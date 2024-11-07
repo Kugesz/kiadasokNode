@@ -3,8 +3,10 @@ Figma: https://www.figma.com/design/jgM0DL8DqZnv9g8Eh1LgMN/Finance?node-id=0-1&t
 # Todo:
 
     jelszo valtoztatas
-    add expense popup
     popupokban hibak normalis kiirasa
+    expense circle toltotsegenek frissitese
+    egysegesiteni a kodot
+        > main.js
 
 # Endpoints:
 
