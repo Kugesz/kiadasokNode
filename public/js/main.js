@@ -37,6 +37,23 @@ const checkOverSpending = async () => {
   }
 };
 
+const updateSpendings = async () => {
+  try {
+    const response = await fetch("/user/getSpending");
+
+    if (!response.ok) {
+      throw new Error("There was an error getting the data!");
+    }
+
+    const result = await response.json();
+
+    const spendingElement = document.getElementById("spending-text");
+    spendingElement.textContent = result.spending + " Ft";
+  } catch (err) {
+    console.error("Egy lépett fel a kiadások frissitése alatt!");
+  }
+};
+
 const updateBalance = (newBalance) => {
   const balanceAmountElement = document.getElementById("balanceAmount");
   balanceAmountElement.innerText = newBalance;
@@ -70,6 +87,7 @@ const addTransaction = async (event) => {
       const result = await response.json();
       renderNewTransaction(description, amount);
       checkOverSpending();
+      updateSpendings();
       changeMenuState("add-expense-menu");
     } else {
       throw new Error("Error posting data!");
@@ -105,7 +123,7 @@ const setBudget = async (event) => {
       checkOverSpending();
       changeMenuState("set-budget-menu");
     } else {
-      console.log("Failed to send data.");
+      console.error("Failed to send data.");
     }
   } catch (err) {
     console.error("Hiba lepett fel egy új kiadás hozzáadásánál!");

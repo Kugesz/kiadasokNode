@@ -66,7 +66,10 @@ export const changePassword = async (req, res, next) => {
 const updateSpendings = async (user) => {
   try {
     const sum = user.expenses.reduce((sum, item) => sum + item.amount, 0);
-    await User.updateOne({ username: user.username }, { spending: sum });
+    await User.updateOne(
+      { username: user.username },
+      { $set: { spending: sum } }
+    );
   } catch (err) {
     console.error(err);
   }
@@ -84,7 +87,8 @@ export const newExpense = async (req, res, next) => {
 
     const newUser = await User.findOneAndUpdate(
       { username: username },
-      { $push: { expenses: expense } }
+      { $push: { expenses: expense } },
+      { new: true }
     );
     updateSpendings(newUser);
     res.status(201).json({ message: "Expense added successfully!" });

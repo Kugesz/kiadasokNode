@@ -99,12 +99,13 @@
 <script src="/js/main.js"></script>
 <script src="/js/circle.js"></script>
 <script>
-  const spending = <%= JSON.stringify(spending) %>;
-  const budget = <%= JSON.stringify(budget) %>;
-  if(spending > budget){
-    setProgress(100);
+  const spending = <%= parseInt(JSON.stringify(spending)) %>;
+  const budget = <%= parseInt(JSON.stringify(budget)) %>;
+  const precatage = spending / budget;
+  if(precatage > 1){
+    setProgress(1);
   }else {
-    setProgress(spending/budget)
+    setProgress(precatage)
   }
 
 </script>

@@ -5,6 +5,5 @@ function setProgress(percentage) {
 
   // Set the stroke-dasharray and stroke-dashoffset for the progress circle
   circle.style.strokeDasharray = circumference;
-  circle.style.strokeDashoffset =
-    circumference - (percentage / 100) * circumference;
+  circle.style.strokeDashoffset = circumference - percentage * circumference;
 }
